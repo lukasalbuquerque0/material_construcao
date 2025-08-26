@@ -1,5 +1,3 @@
-# === PASSO 1: Constante de Desconto (baseada na SELIC) ===
-
 class Config:
     __DESCONTO_PADRAO = 0.105  # 10,5%
 
@@ -10,8 +8,6 @@ class Config:
 
 desconto = Config.get_desconto()
 
-
-# === PASSO 2: Estrutura de Dados para os Materiais ===
 
 materiais = [
     {
@@ -34,8 +30,6 @@ materiais = [
     }
 ]
 
-
-# === PASSO 3: Funções de Validação ===
 
 def validar_string(valor):
     return isinstance(valor, str) and valor.strip() != ""
@@ -62,8 +56,6 @@ def validar_estoque(valor):
     except ValueError:
         return None
 
-
-# === PASSO 4: Função de Cadastro de Materiais ===
 
 def cadastrar_material():
     print("\n=== Cadastro de Material ===")
@@ -99,8 +91,6 @@ def cadastrar_material():
     print(f"\nMaterial '{nome}' cadastrado com sucesso!\n")
 
 
-# === PASSO 5: Listagem de Materiais ===
-
 def listar_materiais():
     print("\n=== Lista de Materiais Cadastrados ===")
 
@@ -113,8 +103,6 @@ def listar_materiais():
         print(f"     Preço unitário: R${material['preco']:.2f}")
         print(f"     Estoque: {material['estoque']} unidades\n")
 
-
-# === PASSO 6: Função para Realizar Venda ===
 
 def realizar_venda():
     print("\n=== Venda de Material ===")
@@ -148,7 +136,7 @@ def realizar_venda():
         print("Entrada inválida. Digite um número inteiro.\n")
         return
 
-    # Cálculo do valor da compra
+
     valor_bruto = material["preco"] * quantidade
 
     if valor_bruto > 100:
@@ -160,10 +148,8 @@ def realizar_venda():
         valor_final = valor_bruto
         desconto_aplicado = False
 
-    # Atualiza o estoque
     material["estoque"] -= quantidade
 
-    # Resumo da venda
     print("\n=== Resumo da Venda ===")
     print(f"Material: {material['nome']} (Unidade: {material['unidade']})")
     print(f"Quantidade: {quantidade}")
@@ -174,8 +160,6 @@ def realizar_venda():
     print(f"Valor final a pagar: R${valor_final:.2f}")
     print(f"Estoque restante: {material['estoque']} unidades\n")
 
-
-# === MENU INTERATIVO DO SISTEMA ===
 
 def menu():
     while True:
@@ -200,6 +184,5 @@ def menu():
             print("Opção inválida. Tente novamente.\n")
 
 
-# Executa o menu somente se o script for rodado diretamente
 if __name__ == "__main__":
     menu()
